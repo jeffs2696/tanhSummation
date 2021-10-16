@@ -1,0 +1,44 @@
+%        File: plotReport.tex
+%     Created: Thu Sep 02 08:00 PM 2021 E
+% Last Change: Thu Sep 02 08:00 PM 2021 E
+%
+\documentclass[a4paper]{article}
+\usepackage{gnuplot-lua-tikz}
+\usepackage{pgfplots}
+\usepackage{mathtools}
+\begin{document}
+
+The goal of this script is to create a function with several kinks (and anti -
+kinks
+
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-2.5, xmax=2.5,
+    ymin=-1.5, ymax=1.5,
+    axis lines=center,
+    axis on top=true,
+    domain=-2.5:2.5,
+    ylabel=$y$,
+    xlabel=$x$,
+    ]
+
+    \addplot [mark=none,draw=red,ultra thick] {tanh(\x)};
+    \node [right, red] at (axis cs: 1,0.7) {$y = \tanh x$};
+    
+    %% Add the asymptotes
+    \draw [blue, dotted, thick] (axis cs:-2.5,-1)-- (axis cs:0,-1);
+    \draw [blue, dotted, thick] (axis cs:+2.5,+1)-- (axis cs:0,+1);
+\end{axis}
+\end{tikzpicture}
+
+\begin{align*}
+    y = \tanh \left( x - 1 \right)
+\end{align*}
+\begin{figure}
+    \begin{center}
+\input{plotResult.tex}
+\end{center} 
+\end{figure}
+\end{document}
+
+
